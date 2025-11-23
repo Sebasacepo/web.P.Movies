@@ -12,5 +12,6 @@ namespace API.P.Movies.DAL
         //Todos los DBSets - las nuevas tablas
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Movie> Movies { get; set; }
     }
 }
