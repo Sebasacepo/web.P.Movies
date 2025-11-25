@@ -5,6 +5,8 @@ public class Movie : AuditBase
 {
   
     [Required]
+ 
+    [Display(Name = "Película")]
     public string duration { get; set; }
     public string? description { get; set; }
     [Required]

@@ -1,47 +1,58 @@
 ﻿using API.P.Movies.DAL;
 using API.P.Movies.DAL.Models;
+using API.P.Movies.DAL.Models.Dtos;
 using API.P.Movies.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 public class MovieRepository : IMovieRepository
 {
     private readonly ApplicationDbContext _context;
-
     public MovieRepository(ApplicationDbContext context)
     {
         _context = context;
     }
-
-    public async Task<IEnumerable<Movie>> GetMoviesAsync() =>
-        await _context.Movies.ToListAsync();
-
-    public async Task<Movie?> GetMovieAsync(int id) =>
-        await _context.Movies.FindAsync(id);
-
-    public async Task CreateMovieAsync(Movie movie)
-    {
-        _context.Movies.Add(movie);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task UpdateMovieAsync(Movie movie)
-    {
-        _context.Movies.Update(movie);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task DeleteMovieAsync(int id)
-    {
-        var movie = await _context.Movies.FindAsync(id);
-        if (movie != null)
-        {
-            _context.Movies.Remove(movie);
-            await _context.SaveChangesAsync();
-        }
-    }
-
-    Task<ICollection<Movie>> IMovieRepository.GetMoviesAsync()
+    public Task<MovieDto> CreateCategoryAsync(MovieCreateUpdateDto categoryCreateDto)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<bool> CreateCategoryAsync(Movie movie)
+    {
+        movie.CreatedDate = DateTime.UtcNow;
+
+        _context.Categories.Add(movie);
+        return await SaveAsync();
+    }
+
+    
+
+    public Task<bool> CreateMovieAsync(Movie movie)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteMovieAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<MovieDto> GetMovieAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<ICollection<MovieDto>> GetMoviesAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<MovieDto> UpdateCategoryAsync(MovieCreateUpdateDto dto, int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    private async Task<bool> SaveAsync()
+    {
+        return await _context.SaveChangesAsync() >= 0 ? true : false;
     }
 }
