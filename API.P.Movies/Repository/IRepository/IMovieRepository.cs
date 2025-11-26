@@ -10,6 +10,7 @@ namespace API.P.Movies.Repository.IRepository
         Task<MovieDto> CreateCategoryAsync(MovieCreateUpdateDto categoryCreateDto);
         Task<MovieDto> UpdateCategoryAsync(MovieCreateUpdateDto dto, int id);
         Task DeleteMovieAsync(int id);
+
         Task<bool> CreateMovieAsync(string name);
         Task<bool> CreateMovieAsync(Movie movie);
     }

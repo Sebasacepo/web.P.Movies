@@ -14,19 +14,18 @@ public class MovieRepository : IMovieRepository
     public Task<MovieDto> CreateCategoryAsync(MovieCreateUpdateDto categoryCreateDto)
     {
         throw new NotImplementedException();
-    }
+    }    
+       
 
-    public async Task<bool> CreateCategoryAsync(Movie movie)
+    public async Task<bool> CreateMovieAsync(Movie movie)
     {
         movie.CreatedDate = DateTime.UtcNow;
 
-        _context.Categories.Add(movie);
+        _context.Movies.Add(movie);
         return await SaveAsync();
     }
 
-    
-
-    public Task<bool> CreateMovieAsync(Movie movie)
+    public Task<bool> CreateMovieAsync(string name)
     {
         throw new NotImplementedException();
     }
