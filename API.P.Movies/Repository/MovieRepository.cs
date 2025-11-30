@@ -25,9 +25,11 @@ public class MovieRepository : IMovieRepository
         return await SaveAsync();
     }
 
-    public Task<bool> CreateMovieAsync(string name)
+    public async Task<bool> CreateMovieAsync(string name)
     {
-        throw new NotImplementedException();
+        return await _context.Movies
+              .AsNoTracking()
+              .AnyAsync(c => c.Name == name);
     }
 
     public Task DeleteMovieAsync(int id)

@@ -21,7 +21,7 @@ namespace API.P.Movies.Repository
                 .AnyAsync(c => c.Id == id);
         }
 
-        public async Task<bool> CategoryExistsByNameAsync(string name)
+        public async Task<bool> CategoryExistsByNameAsync(string name)//post
         {
             return await _context.Categories
                 .AsNoTracking()
